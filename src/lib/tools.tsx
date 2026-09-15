@@ -17,6 +17,7 @@ import {
   Link2,
   Code2,
   Slash,
+  Hash,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -35,6 +36,7 @@ import Base64Tool from '@/tools/base64/Base64Tool'
 import UrlEncodeTool from '@/tools/url-encode/UrlEncodeTool'
 import HtmlEntityTool from '@/tools/html-entity/HtmlEntityTool'
 import BackslashEscapeTool from '@/tools/backslash-escape/BackslashEscapeTool'
+import HexAsciiTool from '@/tools/hex-ascii/HexAsciiTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -170,6 +172,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Slash,
     tag: 'NEW',
     component: BackslashEscapeTool,
+  },
+  {
+    slug: 'hex-ascii',
+    title: 'Hex to ASCII',
+    description: 'Convert text to its hex byte representation, or decode hex back to text.',
+    category: 'Encoders & Decoders',
+    icon: Hash,
+    tag: 'NEW',
+    component: HexAsciiTool,
   },
   {
     slug: 'line-sort-dedupe',
