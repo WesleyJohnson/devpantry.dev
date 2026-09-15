@@ -13,6 +13,7 @@ import {
   CaseSensitive,
   Binary,
   Clock,
+  FileDigit,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -27,6 +28,7 @@ import UrlParser from '@/tools/url-parser/UrlParser'
 import StringCaseConverter from '@/tools/string-case/StringCaseConverter'
 import NumberBaseConverter from '@/tools/number-base/NumberBaseConverter'
 import UnixTimeConverter from '@/tools/unix-time/UnixTimeConverter'
+import Base64Tool from '@/tools/base64/Base64Tool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -38,6 +40,7 @@ export type ToolTag = 'POPULAR' | 'NEW'
 export const CATEGORIES = [
   'Converters',
   'Formatters & Parsers',
+  'Encoders & Decoders',
   'AI & LLM Helpers',
   'Security & Infrastructure',
 ] as const
@@ -125,6 +128,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Clock,
     tag: 'NEW',
     component: UnixTimeConverter,
+  },
+  {
+    slug: 'base64',
+    title: 'Base64 Encode/Decode',
+    description: 'Encode text to Base64 or decode it back, with a URL-safe option.',
+    category: 'Encoders & Decoders',
+    icon: FileDigit,
+    tag: 'NEW',
+    component: Base64Tool,
   },
   {
     slug: 'line-sort-dedupe',
