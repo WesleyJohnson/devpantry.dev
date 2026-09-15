@@ -16,6 +16,7 @@ import {
   FileDigit,
   Link2,
   Code2,
+  Slash,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -33,6 +34,7 @@ import UnixTimeConverter from '@/tools/unix-time/UnixTimeConverter'
 import Base64Tool from '@/tools/base64/Base64Tool'
 import UrlEncodeTool from '@/tools/url-encode/UrlEncodeTool'
 import HtmlEntityTool from '@/tools/html-entity/HtmlEntityTool'
+import BackslashEscapeTool from '@/tools/backslash-escape/BackslashEscapeTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -159,6 +161,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Code2,
     tag: 'NEW',
     component: HtmlEntityTool,
+  },
+  {
+    slug: 'backslash-escape',
+    title: 'Backslash Escape/Unescape',
+    description: 'Escape a string for use as a JS/JSON string literal, or unescape it back.',
+    category: 'Encoders & Decoders',
+    icon: Slash,
+    tag: 'NEW',
+    component: BackslashEscapeTool,
   },
   {
     slug: 'line-sort-dedupe',
