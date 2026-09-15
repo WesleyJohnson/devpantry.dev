@@ -15,6 +15,7 @@ import {
   Clock,
   FileDigit,
   Link2,
+  Code2,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -31,6 +32,7 @@ import NumberBaseConverter from '@/tools/number-base/NumberBaseConverter'
 import UnixTimeConverter from '@/tools/unix-time/UnixTimeConverter'
 import Base64Tool from '@/tools/base64/Base64Tool'
 import UrlEncodeTool from '@/tools/url-encode/UrlEncodeTool'
+import HtmlEntityTool from '@/tools/html-entity/HtmlEntityTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -148,6 +150,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Link2,
     tag: 'NEW',
     component: UrlEncodeTool,
+  },
+  {
+    slug: 'html-entity',
+    title: 'HTML Entity Encode/Decode',
+    description: 'Escape text for safe HTML embedding, or decode HTML entities back to text.',
+    category: 'Encoders & Decoders',
+    icon: Code2,
+    tag: 'NEW',
+    component: HtmlEntityTool,
   },
   {
     slug: 'line-sort-dedupe',
