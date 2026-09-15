@@ -11,6 +11,7 @@ import {
   ArrowDownUp,
   Globe,
   CaseSensitive,
+  Binary,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -23,6 +24,7 @@ import ColorConverter from '@/tools/color-converter/ColorConverter'
 import LineTools from '@/tools/line-tools/LineTools'
 import UrlParser from '@/tools/url-parser/UrlParser'
 import StringCaseConverter from '@/tools/string-case/StringCaseConverter'
+import NumberBaseConverter from '@/tools/number-base/NumberBaseConverter'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -103,6 +105,15 @@ export const TOOLS: ToolMeta[] = [
     icon: CaseSensitive,
     tag: 'NEW',
     component: StringCaseConverter,
+  },
+  {
+    slug: 'number-base-converter',
+    title: 'Number Base Converter',
+    description: 'Convert numbers between binary, octal, decimal, hex, and any custom base.',
+    category: 'Converters',
+    icon: Binary,
+    tag: 'NEW',
+    component: NumberBaseConverter,
   },
   {
     slug: 'line-sort-dedupe',
