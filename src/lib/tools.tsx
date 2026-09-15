@@ -20,6 +20,7 @@ import {
   Hash,
   IdCard,
   Dices,
+  ScanText,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -41,6 +42,7 @@ import BackslashEscapeTool from '@/tools/backslash-escape/BackslashEscapeTool'
 import HexAsciiTool from '@/tools/hex-ascii/HexAsciiTool'
 import UuidUlidTool from '@/tools/uuid-ulid/UuidUlidTool'
 import RandomStringTool from '@/tools/random-string/RandomStringTool'
+import StringInspector from '@/tools/string-inspector/StringInspector'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -204,6 +206,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Dices,
     tag: 'NEW',
     component: RandomStringTool,
+  },
+  {
+    slug: 'string-inspector',
+    title: 'String Inspector',
+    description: 'Count characters, words, lines, sentences, and bytes in a block of text.',
+    category: 'Formatters & Parsers',
+    icon: ScanText,
+    tag: 'NEW',
+    component: StringInspector,
   },
   {
     slug: 'line-sort-dedupe',
