@@ -15,9 +15,10 @@ import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
 import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
 import HashHmacGenerator from '@/tools/hash-hmac/HashHmacGenerator'
 import SqlToZod from '@/tools/sql-to-zod/SqlToZod'
-// Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so this
-// tool is loaded on demand instead of bloating every page's initial bundle.
+// Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
+// tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
+import ContextWindowPacker from '@/tools/context-window-packer/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -84,6 +85,7 @@ export const TOOLS: ToolMeta[] = [
     category: 'AI & LLM Helpers',
     icon: PackageSearch,
     tag: 'NEW',
+    component: ContextWindowPacker,
   },
   {
     slug: 'token-counter',

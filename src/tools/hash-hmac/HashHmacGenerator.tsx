@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Loader2, RotateCcw, WandSparkles } from 'lucide-react'
 import { CopyButton } from '@/components/CopyButton'
 import { DeveloperAdSlot } from '@/components/DeveloperAdSlot'
+import { SegmentedControl } from '@/components/SegmentedControl'
 import {
   digest,
   hmac,
@@ -14,35 +15,6 @@ import {
 const SAMPLE = 'The quick brown fox jumps over the lazy dog'
 
 type Mode = 'hash' | 'hmac'
-
-function SegmentedControl<T extends string>({
-  options,
-  value,
-  onChange,
-}: {
-  options: readonly T[]
-  value: T
-  onChange: (value: T) => void
-}) {
-  return (
-    <div className="flex overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-700">
-      {options.map((option) => (
-        <button
-          key={option}
-          type="button"
-          onClick={() => onChange(option)}
-          className={`px-3 py-1.5 text-xs font-medium transition ${
-            value === option
-              ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
-              : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
-          }`}
-        >
-          {option}
-        </button>
-      ))}
-    </div>
-  )
-}
 
 export default function HashHmacGenerator() {
   const [mode, setMode] = useState<Mode>('hash')
