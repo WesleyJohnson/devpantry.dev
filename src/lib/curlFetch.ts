@@ -1,83 +1,9 @@
+import { extractBalanced, findTopLevelChar, splitTopLevel } from '@/lib/textScan'
+
 export interface ConversionResult {
   output: string
   error: string | null
   warnings: string[]
-}
-
-// ---------------------------------------------------------------------------
-// Shared low-level scanners (quote- and bracket-aware, so we never split a
-// comma or colon that's actually inside a string or nested literal).
-// ---------------------------------------------------------------------------
-
-function skipString(str: string, start: number): number {
-  const quote = str[start]
-  let i = start + 1
-  while (i < str.length) {
-    if (str[i] === '\\') {
-      i += 2
-      continue
-    }
-    if (str[i] === quote) return i
-    i++
-  }
-  return str.length - 1
-}
-
-function extractBalanced(str: string, openIndex: number, open: string, close: string): number {
-  let depth = 0
-  for (let i = openIndex; i < str.length; i++) {
-    const ch = str[i]
-    if (ch === '"' || ch === "'" || ch === '`') {
-      i = skipString(str, i)
-      continue
-    }
-    if (ch === open) depth++
-    else if (ch === close) {
-      depth--
-      if (depth === 0) return i
-    }
-  }
-  return -1
-}
-
-function splitTopLevel(str: string, separator: string): string[] {
-  const parts: string[] = []
-  let depth = 0
-  let current = ''
-  for (let i = 0; i < str.length; i++) {
-    const ch = str[i]
-    if (ch === '"' || ch === "'" || ch === '`') {
-      const end = skipString(str, i)
-      current += str.slice(i, end + 1)
-      i = end
-      continue
-    }
-    if ('{[('.includes(ch)) depth++
-    if ('}])'.includes(ch)) depth--
-    if (ch === separator && depth === 0) {
-      parts.push(current)
-      current = ''
-      continue
-    }
-    current += ch
-  }
-  if (current.trim() !== '') parts.push(current)
-  return parts
-}
-
-function findTopLevelChar(str: string, char: string): number {
-  let depth = 0
-  for (let i = 0; i < str.length; i++) {
-    const ch = str[i]
-    if (ch === '"' || ch === "'" || ch === '`') {
-      i = skipString(str, i)
-      continue
-    }
-    if ('{[('.includes(ch)) depth++
-    if ('}])'.includes(ch)) depth--
-    if (ch === char && depth === 0) return i
-  }
-  return -1
 }
 
 // ---------------------------------------------------------------------------

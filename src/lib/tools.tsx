@@ -14,6 +14,7 @@ import CurlToFetch from '@/tools/curl-to-fetch/CurlToFetch'
 import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
 import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
 import HashHmacGenerator from '@/tools/hash-hmac/HashHmacGenerator'
+import SqlToZod from '@/tools/sql-to-zod/SqlToZod'
 import type { ComponentType } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -71,6 +72,7 @@ export const TOOLS: ToolMeta[] = [
     description: 'Generate Zod schemas straight from a SQL CREATE TABLE statement.',
     category: 'Converters',
     icon: Database,
+    component: SqlToZod,
   },
   {
     slug: 'context-window-packer',
