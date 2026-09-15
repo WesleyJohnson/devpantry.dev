@@ -1,4 +1,5 @@
 import { extractBalanced, skipString, splitTopLevel } from '@/lib/textScan'
+import { toCamelCase, toPascalCase } from '@/lib/stringCase'
 
 export interface SqlToZodResult {
   output: string
@@ -405,25 +406,6 @@ function findCreateTables(sql: string): { tableNameRaw: string; body: string }[]
   return results
 }
 
-function toWords(name: string): string[] {
-  return name
-    .split(/[^A-Za-z0-9]+/)
-    .flatMap((part) => part.split(/(?<=[a-z0-9])(?=[A-Z])/))
-    .filter(Boolean)
-}
-
-function toCamelCase(name: string): string {
-  const words = toWords(name)
-  if (words.length === 0) return 'table'
-  return words.map((w, i) => (i === 0 ? w.toLowerCase() : w[0].toUpperCase() + w.slice(1).toLowerCase())).join('')
-}
-
-function toPascalCase(name: string): string {
-  const words = toWords(name)
-  if (words.length === 0) return 'Table'
-  return words.map((w) => w[0].toUpperCase() + w.slice(1).toLowerCase()).join('')
-}
-
 function composeField(col: ParsedColumn): string {
   const nullable = !col.notNull && !col.isPrimaryKey
   let t = col.baseZodType
@@ -483,8 +465,8 @@ export function sqlToZod(sql: string): SqlToZodResult {
       }
     }
 
-    const schemaName = `${toCamelCase(tableNameRaw)}Schema`
-    const typeName = toPascalCase(tableNameRaw)
+    const schemaName = `${toCamelCase(tableNameRaw, 'table')}Schema`
+    const typeName = toPascalCase(tableNameRaw, 'Table')
     const fieldLines = columns.map((c) => `  ${formatKey(c.name)}: ${composeField(c)},`).join('\n')
 
     return `export const ${schemaName} = z.object({\n${fieldLines}\n})\n\nexport type ${typeName} = z.infer<typeof ${schemaName}>`

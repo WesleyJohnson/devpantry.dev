@@ -8,6 +8,9 @@ import {
   ShieldAlert,
   Fingerprint,
   Palette,
+  ArrowDownUp,
+  Globe,
+  CaseSensitive,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -17,6 +20,9 @@ import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
 import HashHmacGenerator from '@/tools/hash-hmac/HashHmacGenerator'
 import SqlToZod from '@/tools/sql-to-zod/SqlToZod'
 import ColorConverter from '@/tools/color-converter/ColorConverter'
+import LineTools from '@/tools/line-tools/LineTools'
+import UrlParser from '@/tools/url-parser/UrlParser'
+import StringCaseConverter from '@/tools/string-case/StringCaseConverter'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -88,6 +94,33 @@ export const TOOLS: ToolMeta[] = [
     icon: Palette,
     tag: 'NEW',
     component: ColorConverter,
+  },
+  {
+    slug: 'string-case-converter',
+    title: 'String Case Converter',
+    description: 'Convert text between camelCase, snake_case, kebab-case, and more.',
+    category: 'Converters',
+    icon: CaseSensitive,
+    tag: 'NEW',
+    component: StringCaseConverter,
+  },
+  {
+    slug: 'line-sort-dedupe',
+    title: 'Line Sort/Dedupe',
+    description: 'Sort, deduplicate, and clean up multiline text.',
+    category: 'Formatters & Parsers',
+    icon: ArrowDownUp,
+    tag: 'NEW',
+    component: LineTools,
+  },
+  {
+    slug: 'url-parser',
+    title: 'URL Parser',
+    description: 'Break a URL down into its protocol, host, path, and query parameters.',
+    category: 'Formatters & Parsers',
+    icon: Globe,
+    tag: 'NEW',
+    component: UrlParser,
   },
   {
     slug: 'context-window-packer',
