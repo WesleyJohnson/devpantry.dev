@@ -7,6 +7,7 @@ import {
   Calculator,
   ShieldAlert,
   Fingerprint,
+  Palette,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -15,6 +16,7 @@ import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
 import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
 import HashHmacGenerator from '@/tools/hash-hmac/HashHmacGenerator'
 import SqlToZod from '@/tools/sql-to-zod/SqlToZod'
+import ColorConverter from '@/tools/color-converter/ColorConverter'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -77,6 +79,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Converters',
     icon: Database,
     component: SqlToZod,
+  },
+  {
+    slug: 'color-converter',
+    title: 'Color Converter',
+    description: 'Convert between HEX, RGB, HSL, HSB, and CMYK, all synced live.',
+    category: 'Converters',
+    icon: Palette,
+    tag: 'NEW',
+    component: ColorConverter,
   },
   {
     slug: 'context-window-packer',
