@@ -10,6 +10,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
+import CurlToFetch from '@/tools/curl-to-fetch/CurlToFetch'
 import type { ComponentType } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -58,6 +59,7 @@ export const TOOLS: ToolMeta[] = [
     category: 'Converters',
     icon: Terminal,
     tag: 'NEW',
+    component: CurlToFetch,
   },
   {
     slug: 'sql-to-zod',
