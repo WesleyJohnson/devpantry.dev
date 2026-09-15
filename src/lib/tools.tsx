@@ -19,6 +19,7 @@ import {
   Slash,
   Hash,
   IdCard,
+  Dices,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -39,6 +40,7 @@ import HtmlEntityTool from '@/tools/html-entity/HtmlEntityTool'
 import BackslashEscapeTool from '@/tools/backslash-escape/BackslashEscapeTool'
 import HexAsciiTool from '@/tools/hex-ascii/HexAsciiTool'
 import UuidUlidTool from '@/tools/uuid-ulid/UuidUlidTool'
+import RandomStringTool from '@/tools/random-string/RandomStringTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -193,6 +195,15 @@ export const TOOLS: ToolMeta[] = [
     icon: IdCard,
     tag: 'NEW',
     component: UuidUlidTool,
+  },
+  {
+    slug: 'random-string-generator',
+    title: 'Random String Generator',
+    description: 'Generate cryptographically random strings with a custom character set.',
+    category: 'Generators',
+    icon: Dices,
+    tag: 'NEW',
+    component: RandomStringTool,
   },
   {
     slug: 'line-sort-dedupe',
