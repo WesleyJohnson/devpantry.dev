@@ -15,7 +15,10 @@ import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
 import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
 import HashHmacGenerator from '@/tools/hash-hmac/HashHmacGenerator'
 import SqlToZod from '@/tools/sql-to-zod/SqlToZod'
-import type { ComponentType } from 'react'
+// Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so this
+// tool is loaded on demand instead of bloating every page's initial bundle.
+import TokenCounter from '@/tools/token-counter/lazy'
+import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
 
@@ -36,7 +39,7 @@ export interface ToolMeta {
   icon: LucideIcon
   tag?: ToolTag
   /** Present only for tools that are actually wired up; others render a "coming soon" state. */
-  component?: ComponentType
+  component?: ComponentType | LazyExoticComponent<ComponentType>
 }
 
 export const TOOLS: ToolMeta[] = [
@@ -88,6 +91,7 @@ export const TOOLS: ToolMeta[] = [
     description: 'Estimate token counts for popular LLM tokenizers before you hit send.',
     category: 'AI & LLM Helpers',
     icon: Calculator,
+    component: TokenCounter,
   },
   {
     slug: 'env-sanitizer',

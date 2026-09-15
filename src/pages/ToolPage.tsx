@@ -1,5 +1,6 @@
+import { Suspense } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { ChevronLeft, Link2, Star } from 'lucide-react'
+import { ChevronLeft, Link2, Loader2, Star } from 'lucide-react'
 import { getToolBySlug } from '@/lib/tools'
 import { useFavorites } from '@/lib/useFavorites'
 import { DeveloperAdSlot } from '@/components/DeveloperAdSlot'
@@ -60,7 +61,16 @@ export function ToolPage() {
       </div>
 
       {tool.component ? (
-        <tool.component />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 py-16 text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Loading tool...
+            </div>
+          }
+        >
+          <tool.component />
+        </Suspense>
       ) : (
         <div className="flex flex-col items-center gap-4 rounded-xl border border-dashed border-zinc-300 py-16 text-center dark:border-zinc-800">
           <p className="text-sm font-medium text-zinc-600 dark:text-zinc-300">
