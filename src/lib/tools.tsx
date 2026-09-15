@@ -13,6 +13,7 @@ import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
 import CurlToFetch from '@/tools/curl-to-fetch/CurlToFetch'
 import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
 import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
+import HashHmacGenerator from '@/tools/hash-hmac/HashHmacGenerator'
 import type { ComponentType } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -100,6 +101,7 @@ export const TOOLS: ToolMeta[] = [
     description: 'Generate MD5, SHA-1, SHA-256, and HMAC digests entirely in-browser.',
     category: 'Security & Infrastructure',
     icon: Fingerprint,
+    component: HashHmacGenerator,
   },
 ]
 
