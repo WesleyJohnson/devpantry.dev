@@ -14,6 +14,7 @@ import {
   Binary,
   Clock,
   FileDigit,
+  Link2,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -29,6 +30,7 @@ import StringCaseConverter from '@/tools/string-case/StringCaseConverter'
 import NumberBaseConverter from '@/tools/number-base/NumberBaseConverter'
 import UnixTimeConverter from '@/tools/unix-time/UnixTimeConverter'
 import Base64Tool from '@/tools/base64/Base64Tool'
+import UrlEncodeTool from '@/tools/url-encode/UrlEncodeTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -137,6 +139,15 @@ export const TOOLS: ToolMeta[] = [
     icon: FileDigit,
     tag: 'NEW',
     component: Base64Tool,
+  },
+  {
+    slug: 'url-encode-decode',
+    title: 'URL Encode/Decode',
+    description: 'Percent-encode or decode text, as a URL component or a full URI.',
+    category: 'Encoders & Decoders',
+    icon: Link2,
+    tag: 'NEW',
+    component: UrlEncodeTool,
   },
   {
     slug: 'line-sort-dedupe',
