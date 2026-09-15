@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
 import CurlToFetch from '@/tools/curl-to-fetch/CurlToFetch'
+import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
 import type { ComponentType } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -51,6 +52,7 @@ export const TOOLS: ToolMeta[] = [
     description: 'Decode JSON Web Tokens and inspect header, payload, and expiry.',
     category: 'Formatters & Parsers',
     icon: KeyRound,
+    component: JwtDecoder,
   },
   {
     slug: 'curl-to-fetch',
