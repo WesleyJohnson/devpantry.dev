@@ -12,6 +12,7 @@ import {
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
 import CurlToFetch from '@/tools/curl-to-fetch/CurlToFetch'
 import JwtDecoder from '@/tools/jwt-decoder/JwtDecoder'
+import EnvSanitizer from '@/tools/env-sanitizer/EnvSanitizer'
 import type { ComponentType } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -91,6 +92,7 @@ export const TOOLS: ToolMeta[] = [
     description: 'Strip secrets from .env files before sharing configs with teammates.',
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
+    component: EnvSanitizer,
   },
   {
     slug: 'hash-hmac',
