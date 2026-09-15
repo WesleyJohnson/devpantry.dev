@@ -18,6 +18,7 @@ import {
   Code2,
   Slash,
   Hash,
+  IdCard,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -37,6 +38,7 @@ import UrlEncodeTool from '@/tools/url-encode/UrlEncodeTool'
 import HtmlEntityTool from '@/tools/html-entity/HtmlEntityTool'
 import BackslashEscapeTool from '@/tools/backslash-escape/BackslashEscapeTool'
 import HexAsciiTool from '@/tools/hex-ascii/HexAsciiTool'
+import UuidUlidTool from '@/tools/uuid-ulid/UuidUlidTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -49,6 +51,7 @@ export const CATEGORIES = [
   'Converters',
   'Formatters & Parsers',
   'Encoders & Decoders',
+  'Generators',
   'AI & LLM Helpers',
   'Security & Infrastructure',
 ] as const
@@ -181,6 +184,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Hash,
     tag: 'NEW',
     component: HexAsciiTool,
+  },
+  {
+    slug: 'uuid-ulid',
+    title: 'UUID/ULID Generate/Decode',
+    description: 'Generate UUID v4s and ULIDs, or decode an existing one.',
+    category: 'Generators',
+    icon: IdCard,
+    tag: 'NEW',
+    component: UuidUlidTool,
   },
   {
     slug: 'line-sort-dedupe',
