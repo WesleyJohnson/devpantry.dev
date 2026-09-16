@@ -2,6 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react'
 import { AlertTriangle, RotateCcw, WandSparkles, XCircle } from 'lucide-react'
 import { CopyButton } from '@/components/CopyButton'
 import { DeveloperAdSlot } from '@/components/DeveloperAdSlot'
+import { Tooltip } from '@/components/Tooltip'
 import {
   buildFlagString,
   compileRegex,
@@ -190,17 +191,21 @@ export default function RegexTester() {
         </div>
       ) : (
         tokens.length > 0 && (
-          <div className="flex flex-col overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800">
-            <div className="flex items-center justify-between border-b border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900/50">
+          // No overflow-hidden here (unlike the other panels) — tooltips on
+          // the first/last row of tokens need to escape the panel bounds,
+          // so the rounded corners are applied directly to the header/body
+          // instead of relying on a clipping ancestor.
+          <div className="flex flex-col rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <div className="flex items-center justify-between rounded-t-xl border-b border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-zinc-800 dark:bg-zinc-900/50">
               <span className="text-xs font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
                 Pattern breakdown — hover a piece for what it means
               </span>
             </div>
-            <div className="flex flex-wrap gap-0.5 bg-white p-3 font-mono text-sm dark:bg-zinc-950">
+            <div className="flex flex-wrap gap-0.5 rounded-b-xl bg-white p-3 font-mono text-sm dark:bg-zinc-950">
               {tokens.map((t, i) => (
-                <span key={i} title={t.description} className={`rounded px-0.5 ${TOKEN_STYLES[t.kind]}`}>
-                  {t.text}
-                </span>
+                <Tooltip key={i} content={t.description}>
+                  <span className={`rounded px-0.5 ${TOKEN_STYLES[t.kind]}`}>{t.text}</span>
+                </Tooltip>
               ))}
             </div>
           </div>
