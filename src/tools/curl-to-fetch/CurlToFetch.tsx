@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { AlertTriangle, CheckCircle2, RotateCcw, WandSparkles, XCircle } from 'lucide-react'
 import { CopyButton } from '@/components/CopyButton'
 import { DeveloperAdSlot } from '@/components/DeveloperAdSlot'
+import { SegmentedControl } from '@/components/SegmentedControl'
 import { curlToFetch, fetchToCurl, type FetchStyle } from '@/lib/curlFetch'
 
 const CURL_SAMPLE = `curl -X POST https://api.devpantry.dev/v1/snippets \\
@@ -41,56 +42,20 @@ export default function CurlToFetch() {
   return (
     <div className="flex flex-col gap-4 p-6">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="flex overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-700">
-          <button
-            type="button"
-            onClick={() => setDirection('curl-to-fetch')}
-            className={`px-3 py-1.5 text-xs font-medium transition ${
-              isCurlToFetch
-                ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
-                : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
-            }`}
-          >
-            cURL → fetch
-          </button>
-          <button
-            type="button"
-            onClick={() => setDirection('fetch-to-curl')}
-            className={`px-3 py-1.5 text-xs font-medium transition ${
-              !isCurlToFetch
-                ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
-                : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
-            }`}
-          >
-            fetch → cURL
-          </button>
-        </div>
+        <SegmentedControl
+          options={['curl-to-fetch', 'fetch-to-curl'] as const}
+          value={direction}
+          onChange={setDirection}
+          labels={{ 'curl-to-fetch': 'cURL → fetch', 'fetch-to-curl': 'fetch → cURL' }}
+        />
 
         {isCurlToFetch && (
-          <div className="flex overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-700">
-            <button
-              type="button"
-              onClick={() => setFetchStyle('promise')}
-              className={`px-3 py-1.5 text-xs font-medium transition ${
-                fetchStyle === 'promise'
-                  ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
-                  : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
-              }`}
-            >
-              Promise chain
-            </button>
-            <button
-              type="button"
-              onClick={() => setFetchStyle('async')}
-              className={`px-3 py-1.5 text-xs font-medium transition ${
-                fetchStyle === 'async'
-                  ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
-                  : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
-              }`}
-            >
-              Async/await
-            </button>
-          </div>
+          <SegmentedControl
+            options={['promise', 'async'] as const}
+            value={fetchStyle}
+            onChange={setFetchStyle}
+            labels={{ promise: 'Promise chain', async: 'Async/await' }}
+          />
         )}
 
         <button
