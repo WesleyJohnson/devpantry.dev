@@ -26,6 +26,7 @@ import {
   Shapes,
   Diff,
   Table,
+  Paintbrush,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -53,6 +54,7 @@ import CronParserTool from '@/tools/cron-parser/CronParserTool'
 import SvgToCssTool from '@/tools/svg-to-css/SvgToCssTool'
 import TextDiffTool from '@/tools/text-diff/TextDiffTool'
 import CsvJsonTool from '@/tools/csv-json/CsvJsonTool'
+import CssFormatterTool from '@/tools/css-formatter/CssFormatterTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -286,6 +288,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'css-formatter',
+    title: 'CSS Beautify/Minify',
+    description: 'Pretty-print or minify CSS, including at-rules like @media and @font-face.',
+    category: 'Formatters & Parsers',
+    icon: Paintbrush,
+    tag: 'NEW',
+    component: CssFormatterTool,
   },
   {
     slug: 'csv-json',
