@@ -21,6 +21,7 @@ import {
   IdCard,
   Dices,
   ScanText,
+  Regex,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -43,6 +44,7 @@ import HexAsciiTool from '@/tools/hex-ascii/HexAsciiTool'
 import UuidUlidTool from '@/tools/uuid-ulid/UuidUlidTool'
 import RandomStringTool from '@/tools/random-string/RandomStringTool'
 import StringInspector from '@/tools/string-inspector/StringInspector'
+import RegexTester from '@/tools/regex-tester/RegexTester'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -215,6 +217,15 @@ export const TOOLS: ToolMeta[] = [
     icon: ScanText,
     tag: 'NEW',
     component: StringInspector,
+  },
+  {
+    slug: 'regex-tester',
+    title: 'RegExp Tester',
+    description: 'Test a JS regular expression against real text, with match highlighting and a token-by-token breakdown.',
+    category: 'Formatters & Parsers',
+    icon: Regex,
+    tag: 'NEW',
+    component: RegexTester,
   },
   {
     slug: 'line-sort-dedupe',
