@@ -34,6 +34,7 @@ import {
   AppWindow,
   FileTerminal,
   FileStack,
+  BookOpenText,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -71,12 +72,13 @@ import HtmlPreviewTool from '@/tools/html-preview/HtmlPreviewTool'
 import CurlToCodeTool from '@/tools/curl-to-code/CurlToCodeTool'
 import JsonToCodeTool from '@/tools/json-to-code/JsonToCodeTool'
 // Code-split: these pull in a real npm dependency (multi-megabyte BPE rank
-// tables for js-tiktoken, ~18KB gzipped for js-yaml) that only the one tool
-// needs, so they're loaded on demand instead of bloating every page's
-// initial bundle.
+// tables for js-tiktoken, ~18KB gzipped for js-yaml, ~13KB for marked) that
+// only the one tool needs, so they're loaded on demand instead of bloating
+// every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
 import ContextWindowPacker from '@/tools/context-window-packer/lazy'
 import YamlJsonTool from '@/tools/yaml-json/lazy'
+import MarkdownPreviewTool from '@/tools/markdown-preview/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -306,6 +308,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'markdown-preview',
+    title: 'Markdown Preview',
+    description: 'Render GitHub-flavored Markdown live in a sandboxed frame with no script execution.',
+    category: 'Formatters & Parsers',
+    icon: BookOpenText,
+    tag: 'NEW',
+    component: MarkdownPreviewTool,
   },
   {
     slug: 'yaml-json',
