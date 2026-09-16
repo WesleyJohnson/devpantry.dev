@@ -112,7 +112,7 @@ export const TOOLS: ToolMeta[] = [
   {
     slug: 'jwt-decoder',
     title: 'JWT Decoder',
-    description: 'Decode JSON Web Tokens and inspect header, payload, and expiry.',
+    description: 'Decode JSON Web Tokens, inspect header, payload, and expiry, and verify the signature.',
     category: 'Formatters & Parsers',
     icon: KeyRound,
     component: JwtDecoder,
