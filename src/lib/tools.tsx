@@ -39,6 +39,7 @@ import {
   FileCode,
   LayoutTemplate,
   Layers,
+  QrCode,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -87,6 +88,7 @@ import SqlFormatterTool from '@/tools/sql-formatter/lazy'
 import JsFormatterTool from '@/tools/js-formatter/lazy'
 import HtmlFormatterTool from '@/tools/html-formatter/lazy'
 import PreprocessorFormatterTool from '@/tools/preprocessor-formatter/lazy'
+import QrCodeTool from '@/tools/qr-code/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -316,6 +318,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'qr-code',
+    title: 'QR Code Reader/Generator',
+    description: 'Generate a QR code from text or a URL, or decode one from an uploaded image.',
+    category: 'Generators',
+    icon: QrCode,
+    tag: 'NEW',
+    component: QrCodeTool,
   },
   {
     slug: 'preprocessor-formatter',
