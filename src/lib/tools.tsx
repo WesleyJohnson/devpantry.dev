@@ -27,6 +27,7 @@ import {
   Diff,
   Table,
   Paintbrush,
+  FileCode2,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -55,6 +56,7 @@ import SvgToCssTool from '@/tools/svg-to-css/SvgToCssTool'
 import TextDiffTool from '@/tools/text-diff/TextDiffTool'
 import CsvJsonTool from '@/tools/csv-json/CsvJsonTool'
 import CssFormatterTool from '@/tools/css-formatter/CssFormatterTool'
+import XmlFormatterTool from '@/tools/xml-formatter/XmlFormatterTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -288,6 +290,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'xml-formatter',
+    title: 'XML Beautify/Minify',
+    description: 'Pretty-print or minify XML, with strict well-formedness checks along the way.',
+    category: 'Formatters & Parsers',
+    icon: FileCode2,
+    tag: 'NEW',
+    component: XmlFormatterTool,
   },
   {
     slug: 'css-formatter',
