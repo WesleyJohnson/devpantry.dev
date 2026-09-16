@@ -33,6 +33,7 @@ import {
   ImageIcon,
   AppWindow,
   FileTerminal,
+  FileStack,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -69,10 +70,13 @@ import Base64ImageTool from '@/tools/base64-image/Base64ImageTool'
 import HtmlPreviewTool from '@/tools/html-preview/HtmlPreviewTool'
 import CurlToCodeTool from '@/tools/curl-to-code/CurlToCodeTool'
 import JsonToCodeTool from '@/tools/json-to-code/JsonToCodeTool'
-// Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
-// tools are loaded on demand instead of bloating every page's initial bundle.
+// Code-split: these pull in a real npm dependency (multi-megabyte BPE rank
+// tables for js-tiktoken, ~18KB gzipped for js-yaml) that only the one tool
+// needs, so they're loaded on demand instead of bloating every page's
+// initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
 import ContextWindowPacker from '@/tools/context-window-packer/lazy'
+import YamlJsonTool from '@/tools/yaml-json/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -302,6 +306,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'yaml-json',
+    title: 'YAML ↔ JSON',
+    description: 'Convert between YAML and JSON, including multi-document streams and anchor merge keys.',
+    category: 'Formatters & Parsers',
+    icon: FileStack,
+    tag: 'NEW',
+    component: YamlJsonTool,
   },
   {
     slug: 'json-to-code',

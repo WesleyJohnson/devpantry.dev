@@ -12,6 +12,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "js-tiktoken": "^1.0.21",
+    "js-yaml": "^5.4.2",
     "lucide-react": "^1.46.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
