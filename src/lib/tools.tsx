@@ -45,6 +45,7 @@ import {
   Contrast,
   SearchCode,
   ShieldCheck,
+  FileSearch,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -99,6 +100,7 @@ import SubnetCalculatorTool from '@/tools/subnet-calculator/SubnetCalculatorTool
 import ContrastCheckerTool from '@/tools/contrast-checker/ContrastCheckerTool'
 import CharInspectorTool from '@/tools/char-inspector/CharInspectorTool'
 import JsonSchemaValidatorTool from '@/tools/json-schema-validator/lazy'
+import JsonQueryTool from '@/tools/json-query/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -134,6 +136,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Braces,
     tag: 'POPULAR',
     component: JsonFormatter,
+  },
+  {
+    slug: 'json-query',
+    title: 'JMESPath/JSONPath Tester',
+    description: 'Run a JMESPath or JSONPath query against JSON data and see the matches live.',
+    category: 'Formatters & Parsers',
+    icon: FileSearch,
+    tag: 'NEW',
+    component: JsonQueryTool,
   },
   {
     slug: 'json-schema-validator',
