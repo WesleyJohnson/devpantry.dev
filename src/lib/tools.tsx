@@ -31,6 +31,7 @@ import {
   FileJson2,
   Parentheses,
   ImageIcon,
+  AppWindow,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -63,6 +64,7 @@ import XmlFormatterTool from '@/tools/xml-formatter/XmlFormatterTool'
 import PhpSerializeTool from '@/tools/php-serialize/PhpSerializeTool'
 import PhpJsonTool from '@/tools/php-json/PhpJsonTool'
 import Base64ImageTool from '@/tools/base64-image/Base64ImageTool'
+import HtmlPreviewTool from '@/tools/html-preview/HtmlPreviewTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -296,6 +298,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'html-preview',
+    title: 'HTML Preview',
+    description: 'Paste HTML and see it rendered live in a sandboxed frame.',
+    category: 'Formatters & Parsers',
+    icon: AppWindow,
+    tag: 'NEW',
+    component: HtmlPreviewTool,
   },
   {
     slug: 'base64-image',
