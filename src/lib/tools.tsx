@@ -24,6 +24,7 @@ import {
   Regex,
   CalendarClock,
   Shapes,
+  Diff,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -49,6 +50,7 @@ import StringInspector from '@/tools/string-inspector/StringInspector'
 import RegexTester from '@/tools/regex-tester/RegexTester'
 import CronParserTool from '@/tools/cron-parser/CronParserTool'
 import SvgToCssTool from '@/tools/svg-to-css/SvgToCssTool'
+import TextDiffTool from '@/tools/text-diff/TextDiffTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -282,6 +284,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'text-diff',
+    title: 'Text Diff Checker',
+    description: 'Compare two blocks of text line by line, unified or side by side.',
+    category: 'Formatters & Parsers',
+    icon: Diff,
+    tag: 'NEW',
+    component: TextDiffTool,
   },
   {
     slug: 'svg-to-css',
