@@ -37,6 +37,7 @@ import {
   BookOpenText,
   TableProperties,
   FileCode,
+  LayoutTemplate,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -83,6 +84,7 @@ import YamlJsonTool from '@/tools/yaml-json/lazy'
 import MarkdownPreviewTool from '@/tools/markdown-preview/lazy'
 import SqlFormatterTool from '@/tools/sql-formatter/lazy'
 import JsFormatterTool from '@/tools/js-formatter/lazy'
+import HtmlFormatterTool from '@/tools/html-formatter/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -312,6 +314,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'html-formatter',
+    title: 'HTML Beautify/Minify',
+    description: 'Pretty-print HTML, or minify it with real JS and CSS minification for inline scripts and styles.',
+    category: 'Formatters & Parsers',
+    icon: LayoutTemplate,
+    tag: 'NEW',
+    component: HtmlFormatterTool,
   },
   {
     slug: 'js-formatter',
