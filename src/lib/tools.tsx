@@ -30,6 +30,7 @@ import {
   FileCode2,
   FileJson2,
   Parentheses,
+  ImageIcon,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -61,6 +62,7 @@ import CssFormatterTool from '@/tools/css-formatter/CssFormatterTool'
 import XmlFormatterTool from '@/tools/xml-formatter/XmlFormatterTool'
 import PhpSerializeTool from '@/tools/php-serialize/PhpSerializeTool'
 import PhpJsonTool from '@/tools/php-json/PhpJsonTool'
+import Base64ImageTool from '@/tools/base64-image/Base64ImageTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -294,6 +296,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'base64-image',
+    title: 'Base64 Image Encode/Decode',
+    description: 'Encode an image file to a data URI, or decode a data URI back into a previewable image.',
+    category: 'Encoders & Decoders',
+    icon: ImageIcon,
+    tag: 'NEW',
+    component: Base64ImageTool,
   },
   {
     slug: 'php-json',
