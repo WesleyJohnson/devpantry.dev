@@ -257,7 +257,21 @@ function parseCurl(raw: string): ParsedCurl | { error: string } {
   }
 }
 
-function generateFetchCode(parsed: ParsedCurl): string {
+export type FetchStyle = 'promise' | 'async'
+
+// Shifts every non-blank line of a (possibly already multi-line) block by a
+// fixed amount. Used to drop the promise-style fetch(...) block — which
+// already has its own internal 2-space-per-level indent baked in — inside an
+// async function's try block without re-deriving that nesting by hand.
+function indentAll(text: string, spaces: number): string {
+  const pad = ' '.repeat(spaces)
+  return text
+    .split('\n')
+    .map((line) => (line ? pad + line : line))
+    .join('\n')
+}
+
+function generateFetchCode(parsed: ParsedCurl, style: FetchStyle): string {
   const setupLines: string[] = []
   const optionEntries: string[] = [`method: ${JSON.stringify(parsed.method)}`]
 
@@ -279,21 +293,43 @@ function generateFetchCode(parsed: ParsedCurl): string {
   }
 
   const optionsBlock = optionEntries.map((entry) => `  ${entry},`).join('\n')
-  const setup = setupLines.length > 0 ? `${setupLines.join('\n')}\n\n` : ''
+  const fetchCall = `fetch(${JSON.stringify(parsed.url)}, {\n${optionsBlock}\n})`
 
+  if (style === 'async') {
+    const bodyLines = [
+      ...setupLines,
+      ...(setupLines.length > 0 ? [''] : []),
+      `const res = await ${fetchCall};`,
+      'const data = await res.json();',
+      'console.log(data);',
+    ]
+    const tryBody = indentAll(bodyLines.join('\n'), 4)
+    return (
+      'async function run() {\n' +
+      '  try {\n' +
+      `${tryBody}\n` +
+      '  } catch (err) {\n' +
+      '    console.error(err);\n' +
+      '  }\n' +
+      '}\n\n' +
+      'run();'
+    )
+  }
+
+  const setup = setupLines.length > 0 ? `${setupLines.join('\n')}\n\n` : ''
   return (
-    `${setup}fetch(${JSON.stringify(parsed.url)}, {\n${optionsBlock}\n})\n` +
+    `${setup}${fetchCall}\n` +
     '  .then((res) => res.json())\n' +
     '  .then((data) => console.log(data))\n' +
     '  .catch((err) => console.error(err));'
   )
 }
 
-export function curlToFetch(input: string): ConversionResult {
+export function curlToFetch(input: string, style: FetchStyle = 'promise'): ConversionResult {
   if (!input.trim()) return { output: '', error: null, warnings: [] }
   const parsed = parseCurl(input)
   if ('error' in parsed) return { output: '', error: parsed.error, warnings: [] }
-  return { output: generateFetchCode(parsed), error: null, warnings: parsed.warnings }
+  return { output: generateFetchCode(parsed, style), error: null, warnings: parsed.warnings }
 }
 
 // ---------------------------------------------------------------------------

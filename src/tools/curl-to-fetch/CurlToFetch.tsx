@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { AlertTriangle, CheckCircle2, RotateCcw, WandSparkles, XCircle } from 'lucide-react'
 import { CopyButton } from '@/components/CopyButton'
 import { DeveloperAdSlot } from '@/components/DeveloperAdSlot'
-import { curlToFetch, fetchToCurl } from '@/lib/curlFetch'
+import { curlToFetch, fetchToCurl, type FetchStyle } from '@/lib/curlFetch'
 
 const CURL_SAMPLE = `curl -X POST https://api.devpantry.dev/v1/snippets \\
   -H "Content-Type: application/json" \\
@@ -26,14 +26,15 @@ export default function CurlToFetch() {
   const [direction, setDirection] = useState<Direction>('curl-to-fetch')
   const [curlInput, setCurlInput] = useState(CURL_SAMPLE)
   const [fetchInput, setFetchInput] = useState(FETCH_SAMPLE)
+  const [fetchStyle, setFetchStyle] = useState<FetchStyle>('promise')
 
   const isCurlToFetch = direction === 'curl-to-fetch'
   const input = isCurlToFetch ? curlInput : fetchInput
   const setInput = isCurlToFetch ? setCurlInput : setFetchInput
 
   const { output, error, warnings } = useMemo(
-    () => (isCurlToFetch ? curlToFetch(input) : fetchToCurl(input)),
-    [isCurlToFetch, input],
+    () => (isCurlToFetch ? curlToFetch(input, fetchStyle) : fetchToCurl(input)),
+    [isCurlToFetch, input, fetchStyle],
   )
   const isValid = input.trim().length > 0 && !error
 
@@ -64,6 +65,33 @@ export default function CurlToFetch() {
             fetch → cURL
           </button>
         </div>
+
+        {isCurlToFetch && (
+          <div className="flex overflow-hidden rounded-md border border-zinc-200 dark:border-zinc-700">
+            <button
+              type="button"
+              onClick={() => setFetchStyle('promise')}
+              className={`px-3 py-1.5 text-xs font-medium transition ${
+                fetchStyle === 'promise'
+                  ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
+                  : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
+              }`}
+            >
+              Promise chain
+            </button>
+            <button
+              type="button"
+              onClick={() => setFetchStyle('async')}
+              className={`px-3 py-1.5 text-xs font-medium transition ${
+                fetchStyle === 'async'
+                  ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
+                  : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800'
+              }`}
+            >
+              Async/await
+            </button>
+          </div>
+        )}
 
         <button
           type="button"
