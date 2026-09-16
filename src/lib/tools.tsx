@@ -25,6 +25,7 @@ import {
   CalendarClock,
   Shapes,
   Diff,
+  Table,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -51,6 +52,7 @@ import RegexTester from '@/tools/regex-tester/RegexTester'
 import CronParserTool from '@/tools/cron-parser/CronParserTool'
 import SvgToCssTool from '@/tools/svg-to-css/SvgToCssTool'
 import TextDiffTool from '@/tools/text-diff/TextDiffTool'
+import CsvJsonTool from '@/tools/csv-json/CsvJsonTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -284,6 +286,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'csv-json',
+    title: 'CSV ↔ JSON',
+    description: 'Convert between CSV and a JSON array of objects, handling quoted fields per RFC 4180.',
+    category: 'Formatters & Parsers',
+    icon: Table,
+    tag: 'NEW',
+    component: CsvJsonTool,
   },
   {
     slug: 'text-diff',
