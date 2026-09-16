@@ -42,6 +42,7 @@ import {
   QrCode,
   BadgeCheck,
   Network,
+  Contrast,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -93,6 +94,7 @@ import PreprocessorFormatterTool from '@/tools/preprocessor-formatter/lazy'
 import QrCodeTool from '@/tools/qr-code/lazy'
 import X509DecoderTool from '@/tools/x509-decoder/lazy'
 import SubnetCalculatorTool from '@/tools/subnet-calculator/SubnetCalculatorTool'
+import ContrastCheckerTool from '@/tools/contrast-checker/ContrastCheckerTool'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -162,6 +164,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Palette,
     tag: 'NEW',
     component: ColorConverter,
+  },
+  {
+    slug: 'contrast-checker',
+    title: 'Color Contrast Checker',
+    description: 'Check a foreground/background color pair against WCAG AA and AAA contrast thresholds.',
+    category: 'Converters',
+    icon: Contrast,
+    tag: 'NEW',
+    component: ContrastCheckerTool,
   },
   {
     slug: 'string-case-converter',
