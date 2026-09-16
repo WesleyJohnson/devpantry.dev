@@ -44,6 +44,7 @@ import {
   Network,
   Contrast,
   SearchCode,
+  ShieldCheck,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -97,6 +98,7 @@ import X509DecoderTool from '@/tools/x509-decoder/lazy'
 import SubnetCalculatorTool from '@/tools/subnet-calculator/SubnetCalculatorTool'
 import ContrastCheckerTool from '@/tools/contrast-checker/ContrastCheckerTool'
 import CharInspectorTool from '@/tools/char-inspector/CharInspectorTool'
+import JsonSchemaValidatorTool from '@/tools/json-schema-validator/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -132,6 +134,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Braces,
     tag: 'POPULAR',
     component: JsonFormatter,
+  },
+  {
+    slug: 'json-schema-validator',
+    title: 'JSON Schema Validator',
+    description: 'Validate a JSON document against a JSON Schema (draft-07, 2019-09, or 2020-12).',
+    category: 'Formatters & Parsers',
+    icon: ShieldCheck,
+    tag: 'NEW',
+    component: JsonSchemaValidatorTool,
   },
   {
     slug: 'jwt-decoder',
