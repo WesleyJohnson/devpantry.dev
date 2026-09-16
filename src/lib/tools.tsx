@@ -36,6 +36,7 @@ import {
   FileStack,
   BookOpenText,
   TableProperties,
+  FileCode,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -81,6 +82,7 @@ import ContextWindowPacker from '@/tools/context-window-packer/lazy'
 import YamlJsonTool from '@/tools/yaml-json/lazy'
 import MarkdownPreviewTool from '@/tools/markdown-preview/lazy'
 import SqlFormatterTool from '@/tools/sql-formatter/lazy'
+import JsFormatterTool from '@/tools/js-formatter/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -310,6 +312,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'js-formatter',
+    title: 'JS Beautify/Minify',
+    description: 'Beautify JavaScript with Prettier, or minify it with Terser.',
+    category: 'Formatters & Parsers',
+    icon: FileCode,
+    tag: 'NEW',
+    component: JsFormatterTool,
   },
   {
     slug: 'sql-formatter',
