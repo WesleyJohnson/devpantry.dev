@@ -28,6 +28,7 @@ import {
   Table,
   Paintbrush,
   FileCode2,
+  FileJson2,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -57,6 +58,7 @@ import TextDiffTool from '@/tools/text-diff/TextDiffTool'
 import CsvJsonTool from '@/tools/csv-json/CsvJsonTool'
 import CssFormatterTool from '@/tools/css-formatter/CssFormatterTool'
 import XmlFormatterTool from '@/tools/xml-formatter/XmlFormatterTool'
+import PhpSerializeTool from '@/tools/php-serialize/PhpSerializeTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -290,6 +292,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'php-serialize',
+    title: 'PHP Serializer/Unserializer',
+    description: 'Convert between JSON and PHP serialize() strings, byte-accurate for multi-byte strings.',
+    category: 'Formatters & Parsers',
+    icon: FileJson2,
+    tag: 'NEW',
+    component: PhpSerializeTool,
   },
   {
     slug: 'xml-formatter',
