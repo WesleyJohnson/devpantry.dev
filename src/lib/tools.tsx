@@ -40,6 +40,7 @@ import {
   LayoutTemplate,
   Layers,
   QrCode,
+  BadgeCheck,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -89,6 +90,7 @@ import JsFormatterTool from '@/tools/js-formatter/lazy'
 import HtmlFormatterTool from '@/tools/html-formatter/lazy'
 import PreprocessorFormatterTool from '@/tools/preprocessor-formatter/lazy'
 import QrCodeTool from '@/tools/qr-code/lazy'
+import X509DecoderTool from '@/tools/x509-decoder/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -318,6 +320,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'x509-decoder',
+    title: 'Certificate Decoder',
+    description: 'Decode a PEM X.509 certificate: subject, issuer, validity, fingerprints, and extensions.',
+    category: 'Security & Infrastructure',
+    icon: BadgeCheck,
+    tag: 'NEW',
+    component: X509DecoderTool,
   },
   {
     slug: 'qr-code',
