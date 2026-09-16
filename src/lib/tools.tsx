@@ -38,6 +38,7 @@ import {
   TableProperties,
   FileCode,
   LayoutTemplate,
+  Layers,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -85,6 +86,7 @@ import MarkdownPreviewTool from '@/tools/markdown-preview/lazy'
 import SqlFormatterTool from '@/tools/sql-formatter/lazy'
 import JsFormatterTool from '@/tools/js-formatter/lazy'
 import HtmlFormatterTool from '@/tools/html-formatter/lazy'
+import PreprocessorFormatterTool from '@/tools/preprocessor-formatter/lazy'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -314,6 +316,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'preprocessor-formatter',
+    title: 'LESS/SCSS to CSS',
+    description: 'Compile LESS or SCSS (nesting, mixins, variables) to plain CSS, beautified or minified.',
+    category: 'Converters',
+    icon: Layers,
+    tag: 'NEW',
+    component: PreprocessorFormatterTool,
   },
   {
     slug: 'html-formatter',
