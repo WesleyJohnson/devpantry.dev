@@ -41,6 +41,7 @@ import {
   Layers,
   QrCode,
   BadgeCheck,
+  Network,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -91,6 +92,7 @@ import HtmlFormatterTool from '@/tools/html-formatter/lazy'
 import PreprocessorFormatterTool from '@/tools/preprocessor-formatter/lazy'
 import QrCodeTool from '@/tools/qr-code/lazy'
 import X509DecoderTool from '@/tools/x509-decoder/lazy'
+import SubnetCalculatorTool from '@/tools/subnet-calculator/SubnetCalculatorTool'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -491,6 +493,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Shapes,
     tag: 'NEW',
     component: SvgToCssTool,
+  },
+  {
+    slug: 'subnet-calculator',
+    title: 'IP/CIDR Subnet Calculator',
+    description: 'Compute network, broadcast, host range, and mask details for an IPv4 or IPv6 CIDR block.',
+    category: 'Security & Infrastructure',
+    icon: Network,
+    tag: 'NEW',
+    component: SubnetCalculatorTool,
   },
   {
     slug: 'hash-hmac',
