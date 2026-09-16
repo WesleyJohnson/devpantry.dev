@@ -107,19 +107,19 @@ export default function RegexTester() {
       <div className="flex flex-wrap items-center gap-2">
         <div className="flex items-center gap-1">
           {FLAG_INFO.map(({ key, label, title }) => (
-            <button
-              key={key}
-              type="button"
-              title={title}
-              onClick={() => toggleFlag(key)}
-              className={`h-7 w-7 rounded-md border text-xs font-semibold transition ${
-                flags[key]
-                  ? 'border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900'
-                  : 'border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800'
-              }`}
-            >
-              {label}
-            </button>
+            <Tooltip key={key} content={title}>
+              <button
+                type="button"
+                onClick={() => toggleFlag(key)}
+                className={`h-7 w-7 rounded-md border text-xs font-semibold transition ${
+                  flags[key]
+                    ? 'border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900'
+                    : 'border-zinc-200 text-zinc-500 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800'
+                }`}
+              >
+                {label}
+              </button>
+            </Tooltip>
           ))}
         </div>
 
