@@ -43,6 +43,7 @@ import {
   BadgeCheck,
   Network,
   Contrast,
+  SearchCode,
   FileType2,
   type LucideIcon,
 } from 'lucide-react'
@@ -95,6 +96,7 @@ import QrCodeTool from '@/tools/qr-code/lazy'
 import X509DecoderTool from '@/tools/x509-decoder/lazy'
 import SubnetCalculatorTool from '@/tools/subnet-calculator/SubnetCalculatorTool'
 import ContrastCheckerTool from '@/tools/contrast-checker/ContrastCheckerTool'
+import CharInspectorTool from '@/tools/char-inspector/CharInspectorTool'
 import type { ComponentType, LazyExoticComponent } from 'react'
 
 export type ToolTag = 'POPULAR' | 'NEW'
@@ -272,6 +274,15 @@ export const TOOLS: ToolMeta[] = [
     icon: ScanText,
     tag: 'NEW',
     component: StringInspector,
+  },
+  {
+    slug: 'char-inspector',
+    title: 'Unicode/Character Inspector',
+    description: 'Break text down per codepoint: hex, UTF-8/UTF-16 bytes, Unicode category, and HTML entity.',
+    category: 'Formatters & Parsers',
+    icon: SearchCode,
+    tag: 'NEW',
+    component: CharInspectorTool,
   },
   {
     slug: 'regex-tester',
