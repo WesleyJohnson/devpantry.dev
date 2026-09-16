@@ -22,6 +22,7 @@ import {
   Dices,
   ScanText,
   Regex,
+  CalendarClock,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -45,6 +46,7 @@ import UuidUlidTool from '@/tools/uuid-ulid/UuidUlidTool'
 import RandomStringTool from '@/tools/random-string/RandomStringTool'
 import StringInspector from '@/tools/string-inspector/StringInspector'
 import RegexTester from '@/tools/regex-tester/RegexTester'
+import CronParserTool from '@/tools/cron-parser/CronParserTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -226,6 +228,15 @@ export const TOOLS: ToolMeta[] = [
     icon: Regex,
     tag: 'NEW',
     component: RegexTester,
+  },
+  {
+    slug: 'cron-parser',
+    title: 'Cron Job Parser',
+    description: 'Paste a cron expression to get a plain-English explanation and the next upcoming run times.',
+    category: 'Formatters & Parsers',
+    icon: CalendarClock,
+    tag: 'NEW',
+    component: CronParserTool,
   },
   {
     slug: 'line-sort-dedupe',
