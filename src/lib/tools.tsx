@@ -32,6 +32,7 @@ import {
   Parentheses,
   ImageIcon,
   AppWindow,
+  FileTerminal,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -65,6 +66,7 @@ import PhpSerializeTool from '@/tools/php-serialize/PhpSerializeTool'
 import PhpJsonTool from '@/tools/php-json/PhpJsonTool'
 import Base64ImageTool from '@/tools/base64-image/Base64ImageTool'
 import HtmlPreviewTool from '@/tools/html-preview/HtmlPreviewTool'
+import CurlToCodeTool from '@/tools/curl-to-code/CurlToCodeTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -298,6 +300,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'curl-to-code',
+    title: 'cURL to Code',
+    description: 'Convert a curl command into Python requests, Node axios, or Go net/http code.',
+    category: 'Converters',
+    icon: FileTerminal,
+    tag: 'NEW',
+    component: CurlToCodeTool,
   },
   {
     slug: 'html-preview',

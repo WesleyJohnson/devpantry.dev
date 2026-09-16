@@ -10,7 +10,7 @@ export interface ConversionResult {
 // curl -> fetch
 // ---------------------------------------------------------------------------
 
-interface ParsedCurl {
+export interface ParsedCurl {
   url: string
   method: string
   headers: [string, string][]
@@ -114,7 +114,7 @@ function tokenizeShell(raw: string): string[] {
   return tokens
 }
 
-function parseCurl(raw: string): ParsedCurl | { error: string } {
+export function parseCurl(raw: string): ParsedCurl | { error: string } {
   const tokens = tokenizeShell(raw.trim())
   if (tokens.length === 0) return { error: 'Nothing to parse.' }
 
