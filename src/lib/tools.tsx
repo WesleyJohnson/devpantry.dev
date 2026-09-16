@@ -33,6 +33,7 @@ import {
   ImageIcon,
   AppWindow,
   FileTerminal,
+  FileType2,
   type LucideIcon,
 } from 'lucide-react'
 import JsonFormatter from '@/tools/json-formatter/JsonFormatter'
@@ -67,6 +68,7 @@ import PhpJsonTool from '@/tools/php-json/PhpJsonTool'
 import Base64ImageTool from '@/tools/base64-image/Base64ImageTool'
 import HtmlPreviewTool from '@/tools/html-preview/HtmlPreviewTool'
 import CurlToCodeTool from '@/tools/curl-to-code/CurlToCodeTool'
+import JsonToCodeTool from '@/tools/json-to-code/JsonToCodeTool'
 // Code-split: js-tiktoken bundles multi-megabyte BPE rank tables, so these
 // tools are loaded on demand instead of bloating every page's initial bundle.
 import TokenCounter from '@/tools/token-counter/lazy'
@@ -300,6 +302,15 @@ export const TOOLS: ToolMeta[] = [
     category: 'Security & Infrastructure',
     icon: ShieldAlert,
     component: EnvSanitizer,
+  },
+  {
+    slug: 'json-to-code',
+    title: 'JSON to Code',
+    description: 'Infer types from a JSON sample and generate a TypeScript interface, Python dataclass, or Go struct.',
+    category: 'Converters',
+    icon: FileType2,
+    tag: 'NEW',
+    component: JsonToCodeTool,
   },
   {
     slug: 'curl-to-code',
