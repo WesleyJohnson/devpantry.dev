@@ -76,7 +76,13 @@ export function Sidebar({ open, onClose }: SidebarProps) {
               Wes Johnson
             </a>
           </p>
-          <iframe src="https://github.com/sponsors/WesleyJohnson/button" title="Sponsor WesleyJohnson" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
+          <iframe
+            src="https://github.com/sponsors/WesleyJohnson/button"
+            title="Sponsor WesleyJohnson"
+            height="32"
+            width="114"
+            style={{ border: 0, borderRadius: '6px' }}
+          ></iframe>
           <a
             href="https://github.com/WesleyJohnson/devpantry.dev"
             target="_blank"
