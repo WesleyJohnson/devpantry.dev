@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import clsx from 'clsx'
+import { FolderGit2, Heart } from 'lucide-react'
 import { CATEGORIES, getToolsByCategory } from '@/lib/tools'
 import { DeveloperAdSlot } from '@/components/DeveloperAdSlot'
 
@@ -62,6 +63,28 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </nav>
         <div className="border-t border-zinc-200 p-3 dark:border-zinc-800">
           <DeveloperAdSlot variant="sidebar" className="mx-auto" />
+        </div>
+        <div className="border-t border-zinc-200 px-3 py-2.5 text-center text-[11px] text-zinc-400 dark:border-zinc-800 dark:text-zinc-600">
+          <p className="flex items-center justify-center gap-1">
+            Built with <Heart className="h-3 w-3 fill-current text-red-400" /> by{' '}
+            <a
+              href="https://github.com/WesleyJohnson"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-zinc-500 hover:text-emerald-600 dark:text-zinc-400 dark:hover:text-emerald-400"
+            >
+              Wes Johnson
+            </a>
+          </p>
+          <a
+            href="https://github.com/WesleyJohnson/devpantry.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400"
+          >
+            <FolderGit2 className="h-3 w-3" />
+            View source
+          </a>
         </div>
       </aside>
     </>
