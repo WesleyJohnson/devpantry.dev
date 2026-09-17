@@ -64,7 +64,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         <div className="border-t border-zinc-200 p-3 dark:border-zinc-800">
           <DeveloperAdSlot variant="sidebar" className="mx-auto" />
         </div>
-        <div className="border-t border-zinc-200 px-3 py-2.5 text-center text-[11px] text-zinc-400 dark:border-zinc-800 dark:text-zinc-600">
+        <div className="flex flex-col items-center gap-2 border-t border-zinc-200 px-3 py-2.5 text-center text-[11px] text-zinc-400 dark:border-zinc-800 dark:text-zinc-600">
           <p className="flex items-center justify-center gap-1">
             Built with <Heart className="h-3 w-3 fill-current text-red-400" /> by{' '}
             <a
@@ -87,7 +87,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
             href="https://github.com/WesleyJohnson/devpantry.dev"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400"
+            className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400"
           >
             <FolderGit2 className="h-3 w-3" />
             View source
