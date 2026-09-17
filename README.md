@@ -25,7 +25,10 @@ Other scripts: `npm run build`, `npm run lint`, `npm run preview`.
 
 ## Contributing
 
-Issues and pull requests are welcome. If you're proposing a new tool, keep in mind the project deliberately avoids two categories: tools that ask users to input sensitive data (even client-side), and low-value one-offs already well served by AI scaffolding or starter kits (e.g. a `.gitignore` generator).
+Issues and pull requests are welcome. If you're proposing a new tool, keep in mind the project deliberately avoids two categories:
+
+- Tools that need a real, live secret to produce useful output (e.g. a password strength checker) — that's exposure with no benefit, since the tool can't do its job without you typing in the actual credential. This doesn't rule out tools whose entire purpose is reducing exposure of sensitive input, like the Environment Sanitizer, which takes `.env`-style input specifically to redact secrets before you paste it somewhere else.
+- Low-value one-offs already well served by AI scaffolding or starter kits (e.g. a `.gitignore` generator).
 
 ## License
 
