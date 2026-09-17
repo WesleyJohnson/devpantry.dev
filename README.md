@@ -1,32 +1,32 @@
-# React + TypeScript + Vite
+# DevPantry
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+[devpantry.dev](https://devpantry.dev) — a collection of everyday developer utilities (formatters, converters, validators, decoders, and more) that run 100% client-side.
 
-Currently, two official plugins are available:
+Nothing you paste into a DevPantry tool is ever sent to a server. Every tool runs entirely in your browser — open the Network tab while using one to see for yourself.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Why client-side only
 
-## React Compiler
+Developer tools regularly touch things people shouldn't paste into a random website: production config, tokens, certificates, real payloads. DevPantry avoids that problem entirely by not having a backend to send it to. All processing, formatting, and validation happens locally in your browser and stays there.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the Oxlint configuration
+- React + TypeScript + Vite
+- Tailwind CSS v4
+- No CDN-loaded dependencies — every library a tool needs is bundled and shipped with the app, not fetched from a third party at runtime
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Running locally
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Other scripts: `npm run build`, `npm run lint`, `npm run preview`.
+
+## Contributing
+
+Issues and pull requests are welcome. If you're proposing a new tool, keep in mind the project deliberately avoids two categories: tools that ask users to input sensitive data (even client-side), and low-value one-offs already well served by AI scaffolding or starter kits (e.g. a `.gitignore` generator).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
